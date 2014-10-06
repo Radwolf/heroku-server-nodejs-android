@@ -1,0 +1,31 @@
+{
+  "name": "rest-api-nodejs",
+  "version": "1.0.0",
+  "description": "heroku-server-nodejs-android\r ============================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Radwolf/heroku-server-nodejs-android.git"
+  },
+  "keywords": [
+    "nodejs",
+    "heroku",
+    "rest",
+    "android"
+  ],
+  "author": "Rul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Radwolf/heroku-server-nodejs-android/issues"
+  },
+  "homepage": "https://github.com/Radwolf/heroku-server-nodejs-android",
+  "dependencies": {
+        "express": "~4.9.x",
+        "mongoose": "latest",
+	    "cool-ascii-faces": "~1.3.x"
+
+    }
+}
