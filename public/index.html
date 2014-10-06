@@ -1,0 +1,70 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchPuntuacion">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Node/Angular Rest Api</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+	<script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL PUNTUACIONES -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND PUNTUACION COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Puntuaciones Asteroides <span class="label label-info">{{ puntuaciones.length }}</span></h1>
+		</div>
+
+		<!-- PUNTUACION LIST -->
+		<div id="puntuacion-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE PUNTUACIONES IN $scope.puntuaciones -->
+				<div class="checkbox" ng-repeat="puntuacion in puntuaciones">
+					<label>
+						<input type="checkbox" ng-click="deletePuntuacion(puntuacion._id)"> <strong>Jugador:</strong> {{ puntuacion.nombre }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Puntos:</strong> {{ puntuacion.puntos }}
+					</label>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE PUNTUACIONES -->
+		<div id="puntuacion-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="Nombre jugador" ng-model="formData.nombre">
+						<input type="text" class="form-control input-lg text-center" placeholder="Puntos obtenidos" ng-model="formData.puntos">
+					</div>
+
+					<!-- createToDo() WILL CREATE NEW PUNTUACIONES -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createPuntuacion()">Añadir puntuación</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
