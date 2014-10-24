@@ -5,7 +5,7 @@ function mainController($scope, $http) {
 	$scope.formData = {};
 
 	// when landing on the page, get all categorias and show them
-	$http.getCategorias('/api/cuentas/categorias')
+	$http.get('/api/cuentas/categorias')
 		.success(function(data) {
 			$scope.categorias = data;
 			console.log(data);
