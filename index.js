@@ -146,7 +146,7 @@ app.use(methodOverride());
 	});
 
 	// application -------------------------------------------------------------
-	app.get('/api/cuentas', function(request, response){
+	app.get('/cuentas', function(request, response){
 		response.sendfile('./public/apicategoria.html');
 	});
 	
