@@ -66,6 +66,43 @@ app.use(methodOverride());
 
 	});
 
+		// api ---------------------------------------------------------------------
+	// get all categorias
+	app.get('/api/cuentas/categorias', function(req, res) {
+
+		// use mongoose to get all categorias in the database
+		Categoria.find(function(err, categorias) {
+
+			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+			if (err)
+				res.send(err)
+
+			res.json(categorias); // return all categorias in JSON format
+		});
+	});
+
+	// create categoria and send back all categorias after creation
+	app.post('/api/cuentas/categorias', function(req, res) {
+
+		// create a categoria, information comes from AJAX request from Angular
+		Categoria.create({
+			nombre : req.body.nombre,
+			clave : req.body.clave,
+			done : false
+		}, function(err, categoria) {
+			if (err)
+				res.send(err);
+
+			// get and return all the categorias after you create another
+			Categoria.find(function(err, categorias) {
+				if (err)
+					res.send(err)
+				res.json(categorias);
+			});
+		});
+
+	});
+	
 	// delete a puntuacion
 	app.delete('/api/puntuaciones/:puntuacion_id', function(req, res) {
 		Puntuacion.remove({
@@ -86,13 +123,16 @@ app.use(methodOverride());
 	app.get('/test', function(request, response) {
 	  response.send(cool());
 	});
-		// application -------------------------------------------------------------
+
+	// application -------------------------------------------------------------
+	app.get('/api/cuentas', function(request, response){
+		response.send('./public/apicategoria.html');
+	});
+	
 	app.get('*', function(req, res) {
 		res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 	});
 	
-
-
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })

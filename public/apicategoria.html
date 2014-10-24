@@ -1,0 +1,70 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchPuntuacion">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Node/Angular Rest Api</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+	<script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL CATEGORIAS -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND CATEGORIA COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Listado de categorias de CuenTas <span class="label label-info">{{ categorias.length }}</span></h1>
+		</div>
+
+		<!-- CATEGORIA LIST -->
+		<div id="categoria-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE CATEGORIAS IN $scope.categorias -->
+				<div class="checkbox" ng-repeat="categoria in categorias">
+					<label>
+						<input type="checkbox" ng-click="deleteCategoria(categoria._id)" disabled> <strong>Categoria:</strong> {{ categoria.nombre }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Clave:</strong> {{ categoria.clave }}
+					</label>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE CATEGORIAS -->
+		<div id="categoria-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="Nombre categoria" ng-model="formData.nombre">
+						<input type="text" class="form-control input-lg text-center" placeholder="Clave categoria" ng-model="formData.clave">
+					</div>
+
+					<!-- createToDo() WILL CREATE NEW CATEGORIAS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createCategoria()">Añadir categoría</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
