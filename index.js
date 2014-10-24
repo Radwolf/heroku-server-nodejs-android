@@ -147,11 +147,11 @@ app.use(methodOverride());
 
 	// application -------------------------------------------------------------
 	app.get('/api/cuentas', function(request, response){
-		res.sendfile('./public/apicategoria.html');
+		response.sendfile('./public/apicategoria.html');
 	});
 	
-	app.get('*', function(req, res) {
-		res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+	app.get('*', function(request, response) {
+		response.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 	});
 	
 app.listen(app.get('port'), function() {
