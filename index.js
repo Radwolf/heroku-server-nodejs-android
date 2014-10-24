@@ -27,6 +27,10 @@ app.use(methodOverride());
 		puntos : Number
 	});
 	
+	var Categoria = mongoose.model('Categoria', {
+		nombre : String,
+		clave : String
+	});
 // routes ======================================================================
 
 	// api ---------------------------------------------------------------------
@@ -66,6 +70,23 @@ app.use(methodOverride());
 
 	});
 
+		// delete a puntuacion
+	app.delete('/api/puntuaciones/:puntuacion_id', function(req, res) {
+		Puntuacion.remove({
+			_id : req.params.puntuacion_id
+		}, function(err, puntuacion) {
+			if (err)
+				res.send(err);
+
+			// get and return all the puntuaciones after you create another
+			Puntuacion.find(function(err, puntuaciones) {
+				if (err)
+					res.send(err)
+				res.json(puntuaciones);
+			});
+		});
+	});
+	
 		// api ---------------------------------------------------------------------
 	// get all categorias
 	app.get('/api/cuentas/categorias', function(req, res) {
@@ -103,19 +124,19 @@ app.use(methodOverride());
 
 	});
 	
-	// delete a puntuacion
-	app.delete('/api/puntuaciones/:puntuacion_id', function(req, res) {
-		Puntuacion.remove({
-			_id : req.params.puntuacion_id
-		}, function(err, puntuacion) {
+	// delete a categoria
+	app.delete('/api/cuentas/categoria/:categoria_id', function(req, res) {
+		Categoria.remove({
+			_id : req.params.categoria_id
+		}, function(err, categoria) {
 			if (err)
 				res.send(err);
 
-			// get and return all the puntuaciones after you create another
-			Puntuacion.find(function(err, puntuaciones) {
+			// get and return all the categorias after you create another
+			Categoria.find(function(err, categorias) {
 				if (err)
 					res.send(err)
-				res.json(puntuaciones);
+				res.json(categorias);
 			});
 		});
 	});
@@ -126,7 +147,7 @@ app.use(methodOverride());
 
 	// application -------------------------------------------------------------
 	app.get('/api/cuentas', function(request, response){
-		response.send('./public/apicategoria.html');
+		res.sendfile('./public/apicategoria.html');
 	});
 	
 	app.get('*', function(req, res) {

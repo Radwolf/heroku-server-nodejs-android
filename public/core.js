@@ -1,5 +1,6 @@
 // public/core.js
 var scotchPuntuacion = angular.module('scotchPuntuacion', []);
+var scotchCategoria = angular.module('scotchCategoria', []);
 
 function mainController($scope, $http) {
 	$scope.formData = {};
@@ -64,7 +65,7 @@ function mainController($scope, $http) {
 
 	// delete a categoria after checking it
 	$scope.deleteCategoria = function(id) {
-		$http.delete('/api/cuentas/categorias/' + id)
+		$http.delete('/api/cuentas/categoria/' + id)
 			.success(function(data) {
 				$scope.categorias = data;
 				console.log(data);
