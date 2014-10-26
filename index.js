@@ -28,8 +28,10 @@ app.use(methodOverride());
 	});
 	
 	var Categoria = mongoose.model('Categoria', {
+		id: Number,
 		nombre : String,
-		clave : String
+		clave : String,
+		tipo: String
 	});
 // routes ======================================================================
 
@@ -101,14 +103,33 @@ app.use(methodOverride());
 			res.json(categorias); // return all categorias in JSON format
 		});
 	});
+	
+	// get all categorias by tipo
+	app.get('/api/cuentas/categorias/:tipo', function(req, res) {
 
+		// use mongoose to get all categorias in the database
+		Categoria
+			.find()
+			.where('tipo').equals(req.params.tipo)
+			.exec(function(err, categorias) {
+
+			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+			if (err)
+				res.send(err)
+
+			res.json(categorias); // return all categorias in JSON format
+		});
+	});
+	
 	// create categoria and send back all categorias after creation
 	app.post('/api/cuentas/categorias', function(req, res) {
 
 		// create a categoria, information comes from AJAX request from Angular
 		Categoria.create({
+			id: req.body.id,
 			nombre : req.body.nombre,
 			clave : req.body.clave,
+			tipo: req.body.tipo
 			done : false
 		}, function(err, categoria) {
 			if (err)
