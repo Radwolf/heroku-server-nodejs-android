@@ -129,7 +129,7 @@ app.use(methodOverride());
 			id: req.body.id,
 			nombre : req.body.nombre,
 			clave : req.body.clave,
-			tipo: req.body.tipo
+			tipo: req.body.tipo,
 			done : false
 		}, function(err, categoria) {
 			if (err)
