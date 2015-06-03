@@ -33,6 +33,14 @@ app.use(methodOverride());
 		clave : String,
 		tipo: String
 	});
+
+	var Pasos = mongoose.model('Pasos', {
+		id: Number,
+		idPartida: Number,
+		set: Number,
+		numeroPasos: Number
+	});
+
 // routes ======================================================================
 
 	// api ---------------------------------------------------------------------
@@ -159,6 +167,20 @@ app.use(methodOverride());
 					res.send(err)
 				res.json(categorias);
 			});
+		});
+	});
+
+	// get all pasos
+	app.get('/api/pasos', function(req, res) {
+
+		// use mongoose to get all pasos in the database
+		Pasos.find(function(err, pasos) {
+
+			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+			if (err)
+				res.send(err)
+
+			res.json(pasos); // return all pasos in JSON format
 		});
 	});
 
