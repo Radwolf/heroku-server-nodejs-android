@@ -169,8 +169,7 @@ app.use(methodOverride());
 			});
 		});
 	});
-
-	// get all pasos
+/*	// get all pasos
 	app.get('/api/pasos', function(req, res) {
 
 		// use mongoose to get all pasos in the database
@@ -182,7 +181,7 @@ app.use(methodOverride());
 
 			res.json(pasos); // return all pasos in JSON format
 		});
-	});
+	});*/
 
 	app.get('/test', function(request, response) {
 	  response.send(cool());
